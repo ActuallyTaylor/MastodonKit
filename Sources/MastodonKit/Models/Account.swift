@@ -39,6 +39,13 @@ public struct Account: Codable, Hashable {
     public let followingCount: Int
     /// The number of statuses the account has made.
     public let statusesCount: Int
+    
+    /// An array of `Field`
+    public var fields: [Field] {
+        return _fields ?? []
+    }
+
+    private let _fields: [Field]?
 
     /// An array of `Emoji`.
     public var emojis: [Emoji] {
@@ -69,5 +76,6 @@ public struct Account: Codable, Hashable {
         case followingCount = "following_count"
         case statusesCount = "statuses_count"
         case _emojis = "emojis"
+        case _fields = "fields"
     }
 }
