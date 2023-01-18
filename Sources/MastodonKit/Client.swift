@@ -52,7 +52,6 @@ public struct Client: ClientType {
             }
 
             guard let model = try? Model.decode(data: data) else {
-                print(String(data: data, encoding: .utf8))
                 completion(.failure(ClientError.invalidModel))
                 return
             }

@@ -22,7 +22,7 @@ public enum Search {
     ///   - query: The search query.
     ///   - resolve: Whether to resolve non-local accounts.
     /// - Returns: Request for `Results`.
-    public static func searchV1(query: String, resolve: Bool? = nil) -> Request<Results> {
+    public static func searchV1(query: String, resolve: Bool? = nil) -> Request<ResultsV1> {
         let parameters = [
             Parameter(name: "q", value: query),
             Parameter(name: "resolve", value: resolve.flatMap(trueOrNil))
