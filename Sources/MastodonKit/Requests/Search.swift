@@ -29,7 +29,7 @@ public enum Search {
         ]
 
         let method = HTTPMethod.get(.parameters(parameters))
-        return Request<Results>(path: "/api/v1/search", method: method)
+        return Request<ResultsV1>(path: "/api/v1/search", method: method)
     }
     
     /// Searches for content using the version 2 api.
