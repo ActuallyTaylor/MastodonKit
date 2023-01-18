@@ -38,11 +38,11 @@ public enum Search {
     ///   - query: The search query.
     ///   - resolve: Whether to resolve non-local accounts.
     /// - Returns: Request for `Results`.
-    public static func search(query: String, type: SearchType, range: RequestRange = .default, resolve: Bool? = nil, following: Bool? = nil, accountId: String? = nil, excludeUnreviewed: Bool? = nil) -> Request<Results> {
+    public static func search(query: String, type: SearchType? = nil, range: RequestRange = .default, resolve: Bool? = nil, following: Bool? = nil, accountId: String? = nil, excludeUnreviewed: Bool? = nil) -> Request<Results> {
         let rangeParameters = range.parameters(limit: between(1, and: 40, default: 20)) ?? []
         let localParameters = [
             Parameter(name: "q", value: query),
-            Parameter(name: "type", value: type.rawValue),
+            Parameter(name: "type", value: type?.rawValue),
             Parameter(name: "resolve", value: resolve.flatMap(trueOrNil)),
             Parameter(name: "following", value: following.flatMap(trueOrNil)),
             Parameter(name: "account_id", value: accountId),

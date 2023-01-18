@@ -11,7 +11,7 @@ import Foundation
 public struct Results: Codable, Hashable {
     /// An array of matched accounts.
     public let accounts: [Account]
-    /// An array of matchhed statuses.
+    /// An array of matched statuses.
     public let statuses: [Status]
     /// An array of matched hashtags, as strings.
     public let hashtags: [String]
