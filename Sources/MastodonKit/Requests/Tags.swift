@@ -24,16 +24,15 @@ public enum Tags {
     /// - Parameter id: The status id.
     /// - Returns: Request for `Status`.
     public static func followTag(id: String) -> Request<Tag> {
-        return Request<Tag>(path: "/api/v1/tags/\(id)/follow")
+        return Request<Tag>(path: "/api/v1/tags/\(id)/follow", method: .post(.empty))
     }
+
 
     /// Unfollow a tag.
     ///
     /// - Parameter id: The status id.
     /// - Returns: Request for `Status`.
     public static func unfollowTag(id: String) -> Request<Tag> {
-        return Request<Tag>(path: "/api/v1/tags/\(id)/unfollow")
+        return Request<Tag>(path: "/api/v1/tags/\(id)/unfollow", method: .post(.empty))
     }
-
-
 }
