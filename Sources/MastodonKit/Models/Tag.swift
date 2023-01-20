@@ -13,4 +13,24 @@ public struct Tag: Codable, Hashable {
     public let name: String
     /// The URL of the hashtag.
     public let url: String
+    /// Usage statistics for given days (typically the past week).
+    public let history: [History]
+    /// Whether the current token’s authorized user is following this tag.
+    public let following: Bool?
+    
+    public struct History: Codable, Hashable {
+        /// UNIX timestamp on midnight of the given day.
+        public let day: String
+        /// The counted usage of the tag within that day.
+        public let uses: Int
+        ///The total of accounts using the tag within that day.
+        public let accounts: Int
+    }
 }
+
+/*
+ "day": "1669507200",
+ "accounts": "53",
+ "uses": "56"
+
+ */
