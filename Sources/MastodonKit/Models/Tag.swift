@@ -22,8 +22,8 @@ public struct Tag: Codable, Hashable {
         /// UNIX timestamp on midnight of the given day.
         public let day: String
         /// The counted usage of the tag within that day.
-        public let uses: Int
+        public let uses: String
         ///The total of accounts using the tag within that day.
-        public let accounts: Int
+        public let accounts: String
     }
 }
