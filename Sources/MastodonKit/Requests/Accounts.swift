@@ -187,4 +187,16 @@ public enum Accounts {
         let method = HTTPMethod.get(.parameters(parameters))
         return Request<[Account]>(path: "/api/v1/accounts/search", method: method)
     }
+    
+    /// Quickly lookup a username to see if it is available, skipping WebFinger resolution.
+    ///
+    /// - Parameter acct: The acct uri of the account
+    /// - Returns: Request for `Account`.
+    public static func lookup(acct: String) -> Request<Account> {
+        let parameter = [Parameter(name: "acct", value: acct)]
+        let method = HTTPMethod.get(.parameters(parameter))
+
+        return Request<Account>(path: "/api/v1/accounts/lookup", method: method)
+    }
+
 }
