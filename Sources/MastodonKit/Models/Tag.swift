@@ -26,4 +26,4 @@ public struct Tag: Codable, Hashable {
         ///The total of accounts using the tag within that day.
         public let accounts: Int
     }
-}å
+}
