@@ -14,7 +14,7 @@ public struct Tag: Codable, Hashable {
     /// The URL of the hashtag.
     public let url: String
     /// Usage statistics for given days (typically the past week).
-    public let history: [History]?
+    public let history: [History]
     /// Whether the current token’s authorized user is following this tag.
     public let following: Bool?
     
@@ -26,4 +26,4 @@ public struct Tag: Codable, Hashable {
         ///The total of accounts using the tag within that day.
         public let accounts: Int
     }
-}
+}å
