@@ -23,4 +23,24 @@ public enum Instances {
     public static func customEmojis() -> Request<[Emoji]> {
         return Request<[Emoji]>(path: "/api/v1/custom_emojis")
     }
+    
+    /// Tags that are being used more frequently within the past week.
+    ///
+    /// - Returns: Request for `[Tag]`.
+    public static func tagTrends(range: RequestRange) -> Request<[Tag]> {
+        let rangeParameters = range.parameters(limit: between(1, and: 40, default: 20)) ?? []
+        let method = HTTPMethod.get(.parameters(rangeParameters))
+
+        return Request<[Tag]>(path: "/api/v1/trends/tags", method: method)
+    }
+
+    /// Statuses that have been interacted with more than others.
+    ///
+    /// - Returns: Request for `[Tag]`.
+    public static func statusTrends(range: RequestRange) -> Request<[Status]> {
+        let rangeParameters = range.parameters(limit: between(1, and: 40, default: 20)) ?? []
+        let method = HTTPMethod.get(.parameters(rangeParameters))
+
+        return Request<[Status]>(path: "/api/v1/trends/statuses", method: method)
+    }
 }
