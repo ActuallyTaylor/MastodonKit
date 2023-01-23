@@ -199,4 +199,17 @@ public enum Accounts {
         return Request<Account>(path: "/api/v1/accounts/lookup", method: method)
     }
 
+    ///
+    /// - Parameters:
+    ///   - query: What to search for.
+    ///   - limit: Maximum number of matching accounts to return (default: 40).
+    ///   - following: Limit the search to following (default: false).
+    /// - Returns: Request for `[Account]`.
+    public static func followedTags(range: RequestRange = .default, limit: Int = 100) -> Request<[Tag]> {
+        let rangeParameters = range.parameters(limit: between(1, and: 200, default: limit)) ?? []
+        let method = HTTPMethod.get(.parameters(rangeParameters))
+
+        return Request<[Tag]>(path: "/api/v1/followed_tags", method: method)
+    }
+
 }
