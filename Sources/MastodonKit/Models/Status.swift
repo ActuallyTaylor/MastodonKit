@@ -57,6 +57,10 @@ public class Status: Codable, Hashable {
     public let pinned: Bool?
     /// Preview card for links included within status content.
     public let card: Card?
+    /// Have you muted notifications for this status’s conversation?
+    public let muted: Bool?
+    /// Have you bookmarked this status?
+    public let bookmarked: Bool?
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -83,6 +87,8 @@ public class Status: Codable, Hashable {
         case reblog
         case pinned
         case card
+        case muted
+        case bookmarked
     }
 
     public static func == (lhs: Status, rhs: Status) -> Bool {
