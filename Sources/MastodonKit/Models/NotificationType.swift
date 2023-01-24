@@ -17,4 +17,12 @@ public enum NotificationType: String, Codable, Hashable {
     case favourite
     /// The user has a new follower.
     case follow
+    /// Someone you enabled notifications for has posted a status
+    case status
+    /// Someone requested to follow you
+    case follow_request
+    /// A poll you have voted in or created has ended
+    case poll
+    /// A poll you have voted in or created has ended
+    case update
 }
