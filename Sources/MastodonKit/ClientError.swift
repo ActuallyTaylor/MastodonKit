@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum ClientError: Error {
+public enum ClientError: LocalizedError {
     /// Failed to build the URL to make the request.
     case malformedURL
     /// Failed to parse the Mastodon's JSON reponse.
@@ -19,4 +19,19 @@ public enum ClientError: Error {
     case genericError
     /// The Mastodon service returned an error.
     case mastodonError(String)
+    
+    var errorDescription: String? {
+        switch self {
+        case .malformedURL:
+            return "Malformed URL"
+        case .malformedJSON:
+            return "Malformed JSON"
+        case .invalidModel:
+            return "Invalid Model"
+        case .genericError:
+            return "Generic Error"
+        case .mastodonError(let string):
+            return "Mastodon Error: \(string)"
+        }
+    }
 }
