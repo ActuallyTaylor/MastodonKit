@@ -32,6 +32,7 @@ public struct Client: ClientType {
         let urlRequest = URLRequest(url: url, request: request, accessToken: accessToken)
         let task = session.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
+                print(error)
                 completion(.failure(error))
                 return
             }
