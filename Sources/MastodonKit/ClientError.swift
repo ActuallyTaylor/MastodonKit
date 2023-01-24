@@ -20,7 +20,7 @@ public enum ClientError: LocalizedError {
     /// The Mastodon service returned an error.
     case mastodonError(String)
     
-    var errorDescription: String? {
+    public var errorDescription: String? {
         switch self {
         case .malformedURL:
             return "Malformed URL"
