@@ -55,6 +55,8 @@ public class Status: Codable, Hashable {
     public let reblog: Status?
     /// Whether this is the pinned status for the account that posted it.
     public let pinned: Bool?
+    /// The poll attached to the status.
+    public let poll: Poll?
     /// Preview card for links included within status content.
     public let card: Card?
     /// Have you muted notifications for this status’s conversation?
@@ -86,6 +88,7 @@ public class Status: Codable, Hashable {
         case language
         case reblog
         case pinned
+        case poll
         case card
         case muted
         case bookmarked
