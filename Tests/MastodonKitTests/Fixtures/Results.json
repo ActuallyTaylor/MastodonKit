@@ -63,8 +63,17 @@
         }
     ],
     "hashtags": [
-        "one",
-        "two",
-        "three"
+        {
+          "name": "Test",
+          "url": "http://mastodon.example/tags/test",
+          "history": [
+            {
+              "day": "1668556800",
+              "accounts": "0",
+              "uses": "0"
+            }
+          ],
+          "following": false
+        }
     ]
 }

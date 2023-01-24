@@ -16,7 +16,7 @@ class ResultsTests: XCTestCase {
 
         XCTAssertEqual(results?.accounts.count, 1)
         XCTAssertEqual(results?.statuses.count, 1)
-        XCTAssertEqual((results?.hashtags)!, ["one", "two", "three"])
+        XCTAssertEqual((results?.hashtags)!, [Tag(name: "Test", url: "http://mastodon.example/tags/test", history: [Tag.History(day: "1668556800", uses: "0", accounts: "0  ")], following: false)])
     }
 
     func testResultsWithInvalidData() {
