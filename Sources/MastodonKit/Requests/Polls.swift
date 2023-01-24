@@ -23,9 +23,9 @@ public enum Polls {
     /// - Returns: Request for `Poll`.
     public static func vote(id: String, choices: [Int]) -> Request<Poll> {
         let parameters = choices.map(toArrayOfParameters(withName: "choices"))
-        let method = HTTPMethod.get(.parameters(parameters))
+        let method = HTTPMethod.post(.parameters(parameters))
 
-        return Request<Poll>(path: "/api/v1/polls/\(id)/vote", method: method)
+        return Request<Poll>(path: "/api/v1/polls/\(id)/votes", method: method)
     }
 
 }
