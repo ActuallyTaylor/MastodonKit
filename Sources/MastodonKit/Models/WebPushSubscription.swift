@@ -19,25 +19,25 @@ public struct WebPushSubscription: Codable, Hashable {
     
     public struct Alert: Codable, Hashable {
         /// Receive a push notification when someone else has mentioned you in a status?
-        public let mention: Bool
+        public let mention: Bool?
         ///Receive a push notification when a subscribed account posts a status?
-        public let status: Bool
+        public let status: Bool?
         /// Receive a push notification when a status you created has been boosted by someone else?
-        public let reblog: Bool
+        public let reblog: Bool?
         /// Receive a push notification when someone has followed you?
-        public let follow: Bool
+        public let follow: Bool?
         /// Receive a push notification when someone has requested to followed you?
-        public let followRequest: Bool
+        public let followRequest: Bool?
         /// Receive a push notification when a status you created has been favourited by someone else?
-        public let favourite: Bool
+        public let favourite: Bool?
         /// Receive a push notification when a poll you voted in or created has ended?
-        public let poll: Bool
+        public let poll: Bool?
         /// Receive a push notification when a status you interacted with has been edited?
-        public let update: Bool
+        public let update: Bool?
         /// Receive a push notification when a new user has signed up?
-        public let adminSign_up: Bool
+        public let adminSign_up: Bool?
         /// Receive a push notification when a new report has been filed?
-        public let adminReport: Bool
+        public let adminReport: Bool?
         
         
         enum CodingKeys: String, CodingKey {
