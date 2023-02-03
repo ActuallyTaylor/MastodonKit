@@ -45,7 +45,7 @@ public struct WebPushSubscription: Codable, Hashable {
             case status
             case reblog
             case follow
-            case followRequest
+            case followRequest = "follow_request"
             case favourite
             case poll
             case update
