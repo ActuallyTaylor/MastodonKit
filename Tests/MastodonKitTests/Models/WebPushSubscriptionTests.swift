@@ -15,7 +15,7 @@ class WebPushSubscriptionTests: XCTestCase {
 
         print("parsed \(parsed)")
         XCTAssertNotNil(parsed)
-        XCTAssertEqual(parsed?.id, "328183")
+        XCTAssertEqual(parsed?.id, 328183)
         XCTAssertEqual(parsed?.endpoint, "https://yourdomain.example/listener")
         XCTAssertEqual(parsed?.alerts.follow, true)
         XCTAssertEqual(parsed?.alerts.favourite, true)

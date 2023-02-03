@@ -9,7 +9,7 @@ import Foundation
 
 public struct WebPushSubscription: Codable, Hashable {
     /// The ID of the Web Push subscription in the database.
-    public let id: String
+    public let id: Int
     /// Where push alerts will be sent to.
     public let endpoint: String
     /// The streaming server’s VAPID key.
