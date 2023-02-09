@@ -21,6 +21,26 @@ extension Data {
         append("\r\n")
         append("--MastodonKitBoundary--\r\n")
     }
+    
+    init(parameters: [Parameter]) {
+        self.init()
+
+        for parameter in parameters {
+            append(.init(parameter: parameter))
+        }
+    }
+    
+    init(parameter: Parameter) {
+        self.init()
+
+        if let parameterValue = parameter.value {
+            append("--MastodonKitBoundary\r\n")
+            append("Content-Disposition: form-data; name=\"\(parameter.name)\"\r\n")
+            append("\r\n")
+            append(parameterValue)
+            append("--MastodonKitBoundary\r\n")
+        }
+    }
 
     mutating func append(_ string: String?) {
         guard let data = string?.data(using: .utf8) else { return }
