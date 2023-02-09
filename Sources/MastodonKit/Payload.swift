@@ -30,7 +30,28 @@ extension Payload {
                 .compactMap(toString)
                 .joined(separator: "&")
                 .data(using: .utf8)
-        case .media(let mediaAttachment, _): return mediaAttachment.flatMap(Data.init)
+        case .media(let mediaAttachment, let parameters):
+            let mediaData = mediaAttachment.flatMap(Data.init) ?? Data()
+            var parameterData = Data.init()
+            if let parameters = parameters {
+                for parameter in parameters {
+                    if let value = parameter.value {
+                        var data = Data.init()
+                        data.append("--MastodonKitBoundary\r\n")
+                        data.append("Content-Disposition: form-data; name=\"\(parameter.name)\"\r\n")
+                        data.append("\r\n")
+                        data.append(value)
+                        data.append("--MastodonKitBoundary\r\n")
+                        parameterData.append(contentsOf: data)
+                    }
+                }
+            }
+
+            var combinedData = Data.init()
+            combinedData.append(contentsOf: parameterData)
+            combinedData.append(contentsOf: mediaData)
+            
+            return combinedData
         case .empty: return nil
         }
     }
