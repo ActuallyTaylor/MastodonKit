@@ -19,7 +19,7 @@ public enum Media {
             Parameter(name: "description", value: description)
         ]
         let method = HTTPMethod.post(.media(mediaAttachment, localParameters))
-        return Request<Attachment>(path: "/api/v1/media", method: method)
+        return Request<Attachment>(path: "/api/v2/media", method: method)
         
 //        let rangeParameters = range.parameters(limit: between(1, and: 40, default: 20)) ?? []
 //        let localParameters = [
