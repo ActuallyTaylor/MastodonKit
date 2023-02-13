@@ -32,11 +32,10 @@ public struct Client: ClientType {
         let urlRequest = URLRequest(url: url, request: request, accessToken: accessToken)
         let task = session.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
-                print(error)
                 completion(.failure(error))
                 return
             }
-
+            
             guard let data = data else {
                 completion(.failure(ClientError.malformedJSON))
                 return
@@ -46,7 +45,6 @@ public struct Client: ClientType {
                 let httpResponse = response as? HTTPURLResponse,
                 httpResponse.statusCode == 200
             else {
-                print(String(data: data, encoding: .utf8))
                 let mastodonError = try? MastodonError.decode(data: data)
                 let error: ClientError = mastodonError.map { .mastodonError($0.description) } ?? .genericError
                 completion(.failure(error))
@@ -54,7 +52,6 @@ public struct Client: ClientType {
             }
 
             guard let model = try? Model.decode(data: data) else {
-                print(String(data: data, encoding: .utf8))
                 completion(.failure(ClientError.invalidModel))
                 return
             }
