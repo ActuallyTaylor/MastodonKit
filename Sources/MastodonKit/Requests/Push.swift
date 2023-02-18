@@ -101,7 +101,7 @@ public enum Push {
     /// 
     /// - Returns: A request for `Empty`
     public static func deleteSubscription() -> Request<Empty> {
-        return Request<Empty>(path: "/api/v1/push/subscription", method: HTTPMethod.delete(.empty))
+        return Request<Empty>(path: "/api/v1/push/subscription", method: .delete(.empty))
     }
 
 }
