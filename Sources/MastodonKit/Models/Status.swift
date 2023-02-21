@@ -63,6 +63,8 @@ public class Status: Codable, Hashable {
     public let muted: Bool?
     /// Have you bookmarked this status?
     public let bookmarked: Bool?
+    /// If the current token has an authorized user: The filter and keywords that matched this status.
+    public let filtered: [FilterResult]?
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -92,6 +94,7 @@ public class Status: Codable, Hashable {
         case card
         case muted
         case bookmarked
+        case filtered
     }
 
     public static func == (lhs: Status, rhs: Status) -> Bool {
