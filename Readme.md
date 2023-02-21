@@ -29,6 +29,7 @@ By the way, if you want to get in touch with me, [toot me](https://mastodon.soci
 * [Adam Lickel](https://github.com/lickel)
 * [Bei Li (@libei@mastodon.social)](https://github.com/kylinroc)
 * [Tony Arnold](https://github.com/tonyarnold)
+* [Zachary Lineman](https://github.com/actuallzach)
 
 # License
 
