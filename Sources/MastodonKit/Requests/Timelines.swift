@@ -53,8 +53,7 @@ public enum Timelines {
     /// Retrieves a list timeline.
     ///
     /// - Parameters:
-    ///   - hashtag: The hashtag.
-    ///   - local: Only return statuses originating from this instance.
+    ///   - listID: The  list that
     ///   - range: The bounds used when requesting data from Mastodon.
     /// - Returns: Request for `[Status]`.
     public static func list(_ listID: String, range: RequestRange = .default) -> Request<[Status]> {

@@ -31,6 +31,23 @@ By the way, if you want to get in touch with me, [toot me](https://mastodon.soci
 * [Tony Arnold](https://github.com/tonyarnold)
 * [Zachary Lineman](https://github.com/actuallzach)
 
+# This Branch
+This branch adds support for a significant amount of the new Mastodon APIs. The apis with support added are:
+1. Search API V2
+2. Account Fields
+3. Lookup by webfinger
+4. Updated Tag models
+5. Bookmark and Unbookmark API endpoints
+6. Poll APIs
+7. Web Push Subscription endpoint
+8. Updated to media posting v2 api
+9. Added support for filters
+10. Added localized descriptions to erros
+11. Updated notifications to support 
+12. Added Marker support
+13. Added trending APIs
+14. Added Tags APIs
+
 # License
 
 Copyright (c) 2017 Ornithologist Coder. All rights reserved.
