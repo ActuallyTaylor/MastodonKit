@@ -47,6 +47,7 @@ This branch adds support for a significant amount of the new Mastodon APIs. The 
 12. Added Marker support
 13. Added trending APIs
 14. Added Tags APIs
+15. Updated the Instances API to the newest model version and added all the API calls.
 
 # License
 
