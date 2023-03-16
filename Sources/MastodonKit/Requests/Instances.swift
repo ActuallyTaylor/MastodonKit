@@ -14,7 +14,43 @@ public enum Instances {
     ///
     /// - Returns: Request for `Instance`.
     public static func current() -> Request<Instance> {
-        return Request<Instance>(path: "/api/v1/instance")
+        return Request<Instance>(path: "/api/v2/instance")
+    }
+    
+    /// Domains that this instance is aware of.
+    ///
+    /// - Returns: Request for `[String]`.
+    public static func peers() -> Request<[String]> {
+        return Request<[String]>(path: "/api/v1/instance/peers")
+    }
+    
+    /// Instance activity over the last 3 months, binned weekly.
+    ///
+    /// - Returns: Request for `[InstanceActivity]`.
+    public static func activity() -> Request<[InstanceActivity]> {
+        return Request<[InstanceActivity]>(path: "/api/v1/instance/activity")
+    }
+
+    /// Rules that the users of this service should follow.
+    ///
+    /// - Returns: Request for `[InstanceActivity]`.
+    public static func rules() -> Request<[Rule]> {
+        return Request<[Rule]>(path: "/api/v1/instance/rules")
+    }
+    
+    /// Obtain an extended description of this server.
+    ///
+    /// - Returns: Request for `InstanceExtendedDescription`.
+    public static func extendeDescription() -> Request<InstanceExtendedDescription> {
+        return Request<InstanceExtendedDescription>(path: "/api/v1/instance/extended_description")
+    }
+    
+    
+    /// Obtain a list of domains that have been blocked..
+    ///
+    /// - Returns: Request for `[DomainBlock]`.
+    public static func domainBlocks() -> Request<[DomainBlock]> {
+        return Request<[DomainBlock]>(path: "/api/v1/instance/domain_blocks")
     }
 
     /// Fetches current instance's custom emojis.
