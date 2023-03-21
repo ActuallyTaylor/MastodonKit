@@ -31,7 +31,7 @@ public enum ClientError: LocalizedError {
         case .genericError:
             return "Generic Error"
         case .mastodonError(let string):
-            return "Mastodon Error: \(string)"
+            return string
         }
     }
 }
