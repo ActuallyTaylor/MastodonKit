@@ -75,13 +75,15 @@ public enum Statuses {
                               mediaIDs: [String] = [],
                               sensitive: Bool? = nil,
                               spoilerText: String? = nil,
+                              language: String? = nil,
                               visibility: Visibility = .public) -> Request<Status> {
         let parameters = [
             Parameter(name: "status", value: status),
             Parameter(name: "in_reply_to_id", value: replyToID),
             Parameter(name: "sensitive", value: sensitive.flatMap(trueOrNil)),
             Parameter(name: "spoiler_text", value: spoilerText),
-            Parameter(name: "visibility", value: visibility.rawValue)
+            Parameter(name: "visibility", value: visibility.rawValue),
+            Parameter(name: "language", value: language)
             ] + mediaIDs.map(toArrayOfParameters(withName: "media_ids"))
 
         let method = HTTPMethod.post(.parameters(parameters))
