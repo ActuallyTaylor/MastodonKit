@@ -10,6 +10,24 @@ import Foundation
 
 /// `Accounts` requests.
 public enum Accounts {
+    /// Creates a user and account records. Returns an account access token for the app that initiated the request. The app should save this token for later, and should wait for the user to confirm their account by clicking a link in their email inbox.
+    ///
+    /// - Parameter id: The account id.
+    /// - Returns: Request for `Account`.
+    public static func register(username: String, email: String, password: String, agreement: Bool, locale: String) -> Request<Empty> {
+        let parameters = [
+            Parameter(name: "username", value: username),
+            Parameter(name: "email", value: email),
+            Parameter(name: "password", value: password),
+            Parameter(name: "agreement", value: trueOrNil(agreement)),
+            Parameter(name: "locale", value: locale)
+        ]
+
+        let method = HTTPMethod.post(.parameters(parameters))
+        return Request<Empty>(path: "/api/v1/accounts", method: method)
+    }
+
+    
     /// Fetches an account.
     ///
     /// - Parameter id: The account id.
