@@ -115,6 +115,31 @@ public enum Accounts {
 
         return Request<[Account]>(path: "/api/v1/mutes", method: method)
     }
+    
+    /// Gets an account's favorited statuses.
+    ///
+    /// - Parameters:
+    ///   - range: The bounds used when requesting data from Mastodon.
+    /// - Returns: Request for `[Status]`.
+    public static func favorites(range: RequestRange = .default) -> Request<[Status]> {
+        let parameters = range.parameters(limit: between(1, and: 80, default: 40))
+        let method = HTTPMethod.get(.parameters(parameters))
+
+        return Request<[Status]>(path: "/api/v1/favourites", method: method)
+    }
+    
+    /// Gets an account's bookmarked statuses.
+    ///
+    /// - Parameters:
+    ///   - range: The bounds used when requesting data from Mastodon.
+    /// - Returns: Request for `[Status]`.
+    public static func bookmarks(range: RequestRange = .default) -> Request<[Status]> {
+        let parameters = range.parameters(limit: between(1, and: 80, default: 40))
+        let method = HTTPMethod.get(.parameters(parameters))
+
+        return Request<[Status]>(path: "/api/v1/bookmarks", method: method)
+    }
+
 
     /// Gets an account's statuses.
     ///
