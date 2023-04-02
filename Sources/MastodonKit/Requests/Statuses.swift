@@ -47,7 +47,7 @@ public enum Statuses {
         return Request<[Account]>(path: "/api/v1/statuses/\(id)/reblogged_by", method: method)
     }
 
-    /// Gets who favourited a status.
+    /// Gets who favorited a status.
     ///
     /// - Parameters:
     ///   - id: The status id.
@@ -177,5 +177,12 @@ public enum Statuses {
     public static func unbookmark(id: String) -> Request<Status> {
         return Request<Status>(path: "/api/v1/statuses/\(id)/unbookmark", method: .post(.empty))
     }
-
+    
+    /// Get all known versions of a status, including the initial and current states.
+    ///
+    /// - Parameter id: The status id.
+    /// - Returns: Request for `[StatusEdit]`
+    public static func history(id: String) -> Request<[StatusEdit]> {
+        return Request<[StatusEdit]>(path: "/api/v1/statuses/\(id)/history")
+    }
 }
