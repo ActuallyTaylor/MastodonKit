@@ -60,36 +60,6 @@ public enum Statuses {
         return Request<[Account]>(path: "/api/v1/statuses/\(id)/favourited_by", method: method)
     }
 
-    /// Posts a new status.
-    ///
-    /// - Parameters:
-    ///   - status: The text of the status.
-    ///   - replyTo: The local ID of the status you want to reply to.
-    ///   - mediaIDs: The array of media IDs to attach to the status (maximum 4).
-    ///   - sensitive: Marks the status as NSFW.
-    ///   - spoilerText: the text to be shown as a warning before the actual content.
-    ///   - visibility: The status' visibility.
-    /// - Returns: Request for `Status`.
-    public static func create(status: String,
-                              replyToID: String? = nil,
-                              mediaIDs: [String] = [],
-                              sensitive: Bool? = nil,
-                              spoilerText: String? = nil,
-                              language: String? = nil,
-                              visibility: Visibility = .public) -> Request<Status> {
-        let parameters = [
-            Parameter(name: "status", value: status),
-            Parameter(name: "in_reply_to_id", value: replyToID),
-            Parameter(name: "sensitive", value: sensitive.flatMap(trueOrNil)),
-            Parameter(name: "spoiler_text", value: spoilerText),
-            Parameter(name: "visibility", value: visibility.rawValue),
-            Parameter(name: "language", value: language)
-            ] + mediaIDs.map(toArrayOfParameters(withName: "media_ids"))
-
-        let method = HTTPMethod.post(.parameters(parameters))
-        return Request<Status>(path: "/api/v1/statuses", method: method)
-    }
-
     /// Deletes a status.
     ///
     /// - Parameter id: The status id.
@@ -185,4 +155,70 @@ public enum Statuses {
     public static func history(id: String) -> Request<[StatusEdit]> {
         return Request<[StatusEdit]>(path: "/api/v1/statuses/\(id)/history")
     }
+    
+    /// Posts a new status.
+    ///
+    /// - Parameters:
+    ///   - status: The text of the status.
+    ///   - replyTo: The local ID of the status you want to reply to.
+    ///   - mediaIDs: The array of media IDs to attach to the status (maximum 4).
+    ///   - sensitive: Marks the status as NSFW.
+    ///   - spoilerText: the text to be shown as a warning before the actual content.
+    ///   - visibility: The status' visibility.
+    /// - Returns: Request for `Status`.
+    public static func create(status: String, replyToID: String? = nil, mediaIDs: [String] = [], pollOptions: [String] = [], pollExpiresIn: Int? = nil, pollMultiple: Bool? = nil, pollHideTotals: Bool? = nil, sensitive: Bool? = nil, spoilerText: String? = nil, language: String? = nil, visibility: Visibility = .public) -> Request<Status> {
+        var parameters = [
+            Parameter(name: "status", value: status),
+            Parameter(name: "in_reply_to_id", value: replyToID),
+            Parameter(name: "sensitive", value: sensitive.flatMap(trueOrNil)),
+            Parameter(name: "spoiler_text", value: spoilerText),
+            Parameter(name: "visibility", value: visibility.rawValue),
+            Parameter(name: "language", value: language),
+            
+        ] + mediaIDs.map(toArrayOfParameters(withName: "media_ids"))
+
+        if !pollOptions.isEmpty {
+            parameters.append(contentsOf: [
+                Parameter(name: "poll[expires_in]", value: pollExpiresIn.flatMap(toOptionalString)),
+                Parameter(name: "poll[multiple]", value: pollMultiple.flatMap(trueOrNil)),
+                Parameter(name: "poll[hide_totals]", value: pollHideTotals.flatMap(trueOrNil))
+            ])
+            parameters += pollOptions.map(toArrayOfParameters(withName: "poll[options]"))
+        }
+
+        let method = HTTPMethod.post(.parameters(parameters))
+        return Request<Status>(path: "/api/v1/statuses", method: method)
+    }
+    
+    /// Edit the content of a status.
+    ///
+    /// - Parameters:
+    ///   - status: The text of the status.
+    ///   - replyTo: The local ID of the status you want to reply to.
+    ///   - mediaIDs: The array of media IDs to attach to the status (maximum 4).
+    ///   - sensitive: Marks the status as NSFW.
+    ///   - spoilerText: the text to be shown as a warning before the actual content.
+    ///   - visibility: The status' visibility.
+    /// - Returns: Request for `Status`.
+    public static func edit(id: String, status: String, mediaIDs: [String] = [], pollOptions: [String] = [], pollExpiresIn: Int? = nil, pollMultiple: Bool? = nil, pollHideTotals: Bool? = nil, sensitive: Bool? = nil, spoilerText: String? = nil, language: String? = nil) -> Request<Status> {
+        var parameters = [
+            Parameter(name: "status", value: status),
+            Parameter(name: "sensitive", value: sensitive.flatMap(trueOrNil)),
+            Parameter(name: "spoiler_text", value: spoilerText),
+            Parameter(name: "language", value: language),
+            ] + mediaIDs.map(toArrayOfParameters(withName: "media_ids"))
+
+        if !pollOptions.isEmpty {
+            parameters.append(contentsOf: [
+                Parameter(name: "poll[expires_in]", value: pollExpiresIn.flatMap(toOptionalString)),
+                Parameter(name: "poll[multiple]", value: pollMultiple.flatMap(trueOrNil)),
+                Parameter(name: "poll[hide_totals]", value: pollHideTotals.flatMap(trueOrNil))
+            ])
+            parameters += pollOptions.map(toArrayOfParameters(withName: "poll[options]"))
+        }
+
+        let method = HTTPMethod.put(.parameters(parameters))
+        return Request<Status>(path: "/api/v1/statuses/\(id)", method: method)
+    }
+
 }

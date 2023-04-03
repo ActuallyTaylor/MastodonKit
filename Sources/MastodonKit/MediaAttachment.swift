@@ -15,6 +15,8 @@ public enum MediaAttachment {
     case gif(Data?)
     /// PNG (Portable Network Graphics) image
     case png(Data?)
+    /// PNG (Portable Network Graphics) image
+    case tiff(Data?)
     /// Other media file
     case other(Data?, fileExtension: String, mimeType: String)
 }
@@ -25,6 +27,7 @@ extension MediaAttachment {
         case .jpeg(let data): return data
         case .gif(let data): return data
         case .png(let data): return data
+        case .tiff(let data): return data
         case .other(let data, _, _): return data
         }
     }
@@ -34,6 +37,7 @@ extension MediaAttachment {
         case .jpeg: return "file.jpg"
         case .gif: return "file.gif"
         case .png: return "file.png"
+        case .tiff(_): return "file.tiff"
         case .other(_, let fileExtension, _): return "file.\(fileExtension)"
         }
     }
@@ -43,6 +47,7 @@ extension MediaAttachment {
         case .jpeg: return "image/jpg"
         case .gif: return "image/gif"
         case .png: return "image/png"
+        case .tiff: return "image/tiff"
         case .other(_, _, let mimeType): return mimeType
         }
     }
