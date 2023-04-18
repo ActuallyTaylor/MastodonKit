@@ -19,6 +19,69 @@ public struct Client: ClientType {
         self.accessToken = accessToken
     }
 
+    @available(iOS 13.0, *)
+    public func establishConnection<Model>(_ request: Request<Model>, streamingURL: String) throws -> URLSessionWebSocketTask {
+        guard
+            let components = URLComponents(baseURL: streamingURL, request: request),
+            let url = components.url
+        else {
+            throw ClientError.malformedURL
+        }
+
+        let urlRequest = URLRequest(url: url, request: request, accessToken: accessToken)
+        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: nil)
+        let socket = session.webSocketTask(with: urlRequest)
+        return socket
+    }
+    
+    public func healthCheck(completion: @escaping (Bool) -> Void) {
+        let request = Streaming.checkHealth()
+        guard
+            let components = URLComponents(baseURL: baseURL, request: request),
+            let url = components.url
+        else {
+            completion(false)
+            return
+        }
+
+        let urlRequest = URLRequest(url: url, request: request, accessToken: accessToken)
+        let task = session.dataTask(with: urlRequest) { data, response, error in
+            guard error != nil else {
+                completion(false)
+                return
+            }
+            
+            guard data != nil else {
+                completion(false)
+                return
+            }
+
+            guard
+                let httpResponse = response as? HTTPURLResponse,
+                httpResponse.statusCode == 200
+            else {
+                completion(false)
+                return
+            }
+
+            completion(true)
+
+        }
+
+        task.resume()
+    }
+    
+#if compiler(>=5.6.0) && canImport(_Concurrency)
+    @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
+    public func healthCheck() async throws -> Bool {
+        try await withCheckedThrowingContinuation { continuation in
+            healthCheck() { result in
+                continuation.resume(returning: result)
+            }
+        }
+    }
+#endif
+
     public func run<Model>(_ request: Request<Model>,
                            completion: @escaping (Result<Response<Model>, Error>) -> Void) {
         guard

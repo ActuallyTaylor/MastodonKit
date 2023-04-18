@@ -9,7 +9,7 @@
 import Foundation
 
 extension Decodable {
-    static func decode(data: Data) throws -> Self {
+    public static func decode(data: Data) throws -> Self {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .formatted(.mastodonFormatter)
         return try decoder.decode(Self.self, from: data)

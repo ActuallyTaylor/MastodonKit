@@ -102,6 +102,6 @@ public class Status: Codable, Hashable {
     }
 
     public func hash(into hasher: inout Hasher) {
-        hasher.combine(ObjectIdentifier(self))
+        hasher.combine(id)
     }
 }
