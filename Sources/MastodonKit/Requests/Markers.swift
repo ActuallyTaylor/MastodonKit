@@ -19,11 +19,12 @@ public enum Markers {
     /// - Parameter timeline: The timelines that you are getting markers for
     /// - Returns: Request for `Attachment`.
     public static func getMarkers(timelines: [Timeline] = [.home, .notifications]) -> Request<MarkerPackage> {
-        let localParameters = timelines.map(toArrayOfParameters(withName: "v"))
+        let localParameters = timelines.map(toArrayOfParameters(withName: "timeline"))
         
         let method = HTTPMethod.get(.parameters(localParameters))
         return Request<MarkerPackage>(path: "/api/v1/markers", method: method)
     }
+    
     
     public static func setHomeMarker(homeID: String) -> Request<MarkerPackage> {
         let localParameters = [
