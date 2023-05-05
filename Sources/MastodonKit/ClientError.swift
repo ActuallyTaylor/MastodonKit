@@ -14,7 +14,7 @@ public enum ClientError: LocalizedError {
     /// Failed to parse the Mastodon's JSON reponse.
     case malformedJSON
     /// Failed to parse Mastodon's model.
-    case invalidModel
+    case invalidModel(error: Error)
     /// Generic error.
     case genericError
     /// The Mastodon service returned an error.
@@ -26,8 +26,8 @@ public enum ClientError: LocalizedError {
             return "Malformed URL"
         case .malformedJSON:
             return "Malformed JSON"
-        case .invalidModel:
-            return "Invalid Model"
+        case .invalidModel(let error):
+            return "Invalid Model, \(error.localizedDescription)"
         case .genericError:
             return "Generic Error"
         case .mastodonError(let string):

@@ -40,7 +40,7 @@ public struct Instance: Codable, Hashable {
         /// The URL for the thumbnail image.
         public let url: String
         /// A hash computed by the BlurHash algorithm, for generating colorful preview thumbnails when media has not been downloaded yet.
-        public let blurhash: String
+        public let blurhash: String?
         /// Links to scaled resolution images, for high DPI screens.
         public let versions: InstanceThumbnailVersions?
     }
