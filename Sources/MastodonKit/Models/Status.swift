@@ -65,6 +65,10 @@ public class Status: Codable, Hashable {
     public let bookmarked: Bool?
     /// If the current token has an authorized user: The filter and keywords that matched this status.
     public let filtered: [FilterResult]?
+    /// Plain-text source of a status. Returned instead of content when status is deleted, so the user may redraft from the source text without the client having to reverse-engineer the original text from the HTML content.
+    public let text: String?
+    /// Timestamp of when the status was last edited.
+    public let editedAt: Date?
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -95,6 +99,8 @@ public class Status: Codable, Hashable {
         case muted
         case bookmarked
         case filtered
+        case text
+        case editedAt = "edited_at"
     }
 
     public static func == (lhs: Status, rhs: Status) -> Bool {
