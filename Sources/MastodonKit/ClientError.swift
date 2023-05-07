@@ -27,7 +27,7 @@ public enum ClientError: LocalizedError {
         case .malformedJSON:
             return "Malformed JSON"
         case .invalidModel(let error):
-            return "Invalid Model, \(error.localizedDescription)"
+            return "Invalid Model, \(error)"
         case .genericError:
             return "Generic Error"
         case .mastodonError(let string):
