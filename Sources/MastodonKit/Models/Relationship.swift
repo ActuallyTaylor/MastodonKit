@@ -25,6 +25,18 @@ public struct Relationship: Codable, Hashable {
     public let requested: Bool
     /// Whether the user is currently blocking the user's domain.
     public let domainBlocking: Bool
+    /// Are you receiving this user’s boosts in your home timeline?
+    public let showingReblogs: Bool
+    /// Have you enabled notifications for this user?
+    public let notifying: Bool
+    /// Which languages are you following from this user?
+    public let languages: [String]?
+    /// Is this user blocking you?
+    public let blockedBy: Bool
+    /// Are you featuring this user on your profile?
+    public let endorsed: Bool
+    /// This user’s profile bio
+    public let note: String
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -35,5 +47,11 @@ public struct Relationship: Codable, Hashable {
         case mutingNotifications = "muting_notifications"
         case requested
         case domainBlocking = "domain_blocking"
+        case showingReblogs = "showing_reblogs"
+        case notifying
+        case languages
+        case blockedBy = "blocked_by"
+        case endorsed
+        case note
     }
 }

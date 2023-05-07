@@ -39,6 +39,20 @@ public struct Account: Codable, Hashable {
     public let followingCount: Int
     /// The number of statuses the account has made.
     public let statusesCount: Int
+    /// Indicates that the account may perform automated actions, may not be monitored, or identifies as a robot.
+    public let bot: Bool
+    /// Indicates that the account represents a Group actor.
+    public let group: Bool
+    /// Whether the account has opted into discovery features such as the profile directory.
+    public let discoverable: Bool?
+    /// Whether the local user has opted out of being indexed by search engines.
+    public let noindex: Bool?
+    /// An extra attribute returned only when an account is suspended.
+    public let suspended: Bool?
+    /// An extra attribute returned only when an account is silenced. If true, indicates that the account should be hidden behind a warning screen.
+    public let limited: Bool?
+    /// When the most recent status was posted.
+    public let lastStatusAt: Data?
     
     /// An array of `Field`
     public var fields: [Field] {
@@ -77,5 +91,12 @@ public struct Account: Codable, Hashable {
         case statusesCount = "statuses_count"
         case _emojis = "emojis"
         case _fields = "fields"
+        case bot
+        case group
+        case discoverable
+        case noindex
+        case suspended
+        case limited
+        case lastStatusAt
     }
 }
