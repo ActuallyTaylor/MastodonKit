@@ -33,7 +33,7 @@ public struct Filter: Codable, Hashable {
     /// The action to be taken when a status matches this filter.
     public let filterAction: FilterAction
     /// The keywords grouped under this filter.
-    public let keywords: [FilterKeyword]
+    public let keywords: [FilterKeyword]?
     /// The statuses grouped under this filter.
     public let statuses: [FilterStatus]
     
