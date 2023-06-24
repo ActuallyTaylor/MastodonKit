@@ -79,4 +79,15 @@ public enum Instances {
 
         return Request<[Status]>(path: "/api/v1/trends/statuses", method: method)
     }
+    
+    /// Links that have been shared more than others.
+    ///
+    /// - Returns: Request for `[Card]`.
+    public static func linkTrends(range: RequestRange) -> Request<[Card]> {
+        let rangeParameters = range.parameters(limit: between(1, and: 40, default: 20)) ?? []
+        let method = HTTPMethod.get(.parameters(rangeParameters))
+
+        return Request<[Card]>(path: "/api/v1/trends/links", method: method)
+    }
+
 }

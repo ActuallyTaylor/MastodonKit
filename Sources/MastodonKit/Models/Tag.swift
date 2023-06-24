@@ -17,13 +17,4 @@ public struct Tag: Codable, Hashable {
     public let history: [History]?
     /// Whether the current token’s authorized user is following this tag.
     public let following: Bool?
-    
-    public struct History: Codable, Hashable {
-        /// UNIX timestamp on midnight of the given day.
-        public let day: String
-        /// The counted usage of the tag within that day.
-        public let uses: String
-        ///The total of accounts using the tag within that day.
-        public let accounts: String
-    }
 }
