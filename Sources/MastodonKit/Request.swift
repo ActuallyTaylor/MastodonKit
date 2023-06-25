@@ -9,7 +9,7 @@
 import Foundation
 
 public struct Request<Model: Codable> {
-    let path: String
+    public let path: String
     let method: HTTPMethod
 
     init(path: String, method: HTTPMethod = .get(.empty)) {

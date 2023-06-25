@@ -20,7 +20,7 @@ public struct Client: ClientType {
     }
 
     @available(iOS 13.0, *)
-    public func establishConnection<Model>(_ request: Request<Model>, streamingURL: String) throws -> URLSessionWebSocketTask {
+    public func createWebSocketRequest<Model>(_ request: Request<Model>, streamingURL: String) throws -> URLRequest {
         guard
             let components = URLComponents(baseURL: streamingURL, request: request),
             let url = components.url
@@ -29,9 +29,7 @@ public struct Client: ClientType {
         }
 
         let urlRequest = URLRequest(url: url, request: request, accessToken: accessToken)
-        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: nil)
-        let socket = session.webSocketTask(with: urlRequest)
-        return socket
+        return urlRequest
     }
     
     public func healthCheck(completion: @escaping (Bool) -> Void) {
