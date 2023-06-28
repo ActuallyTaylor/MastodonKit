@@ -22,7 +22,7 @@ public struct Card: Codable, Hashable {
     }
 
     /// The url associated with the card.
-    public let url: URL
+    public let url: String
     /// The title of the card.
     public let title: String
     /// The card description.
