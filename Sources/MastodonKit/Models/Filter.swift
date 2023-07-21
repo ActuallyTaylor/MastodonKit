@@ -35,7 +35,7 @@ public struct Filter: Codable, Hashable {
     /// The keywords grouped under this filter.
     public let keywords: [FilterKeyword]?
     /// The statuses grouped under this filter.
-    public let statuses: [FilterStatus]
+    public let statuses: [FilterStatus]?
     
     private enum CodingKeys: String, CodingKey {
         case id
